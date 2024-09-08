@@ -1,181 +1,86 @@
-<!-- markdownlint-disable MD030 -->
+# AI-Powered Document Review System for Plain Language Transformation
 
-# Flowise Embed
+| Name           | Email                           | LinkedIn                                   |
+| -------------- | ------------------------------- | ------------------------------------------ |
+| Kartik Bhalala | kartikbhalala3310@gmail.com      | [Kartik Bhalala](https://www.linkedin.com/in/kartik-bhalala/) |
 
-Javascript library to display flowise chatbot on your website
+## About The Project
 
-![Flowise](https://github.com/FlowiseAI/FlowiseChatEmbed/blob/main/images/ChatEmbed.gif?raw=true)
+![Project Overview](./images/agents.png)
 
-Install:
+This project was created as part of a hackathon challenge to explore how **AI** can be used to transform bureaucratic and technical jargon into **plain, accessible English** that complies with the **Australian Government Style Manual**. The AI-Powered Document Review System automates the review and revision of complex government content to make it clearer, more accurate, and accessible to a wider audience.
 
-```bash
-yarn install
-```
+The system utilizes multiple specialized AI agents that review different aspects of a document (grammar, structure, accessibility, formatting, and citations). These agents ensure that the document adheres to Australian English rules, improves accessibility for people with disabilities, and follows style guidelines. The changes are applied automatically, with the system providing a summary of where and how the document was edited, allowing users to easily track the revisions.
 
-Dev:
+## Key Features
 
-```bash
-yarn dev
-```
+1. **Plain Language Transformation**: Automatically rewrites bureaucratic language into **clear, simple, and concise English**.
+2. **Style Manual Compliance**: Applies the **Australian Government Style Manual** guidelines for grammar, spelling, punctuation, tone, and inclusivity.
+3. **Accessibility Enhancements**: Ensures the document meets accessibility standards, making content usable for people with disabilities (e.g., screen reader compatibility, alt text for images).
+4. **Direct Changes with Feedback**: The system applies the changes automatically and shows a summary of the edits made to the document.
+5. **Multi-Agent Approach**: Leverages multiple AI agents, each specialized in a different aspect of content review, ensuring comprehensive and efficient document processing.
 
-Build:
+## Project Objective
 
-```bash
-yarn build
-```
+The aim of this project is to provide government organizations with an automated tool to:
+- **Simplify complex language**: Transform technical and bureaucratic language into plain English to help users understand their obligations and make informed decisions.
+- **Enhance accessibility**: Ensure that content is accessible to people with varying literacy levels and disabilities, supporting diverse communities.
+- **Improve efficiency**: Streamline the document review process by applying AI agents that are able to correct grammar, enhance structure, and format content according to style guidelines, making the process faster and more accurate.
 
-## Embed in your HTML
+## Screenshots
 
-### PopUp
+### Original Document
+![Original Document](docs/original-document.png)
 
-```html
-<script type="module">
-  import Chatbot from 'https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js';
-  Chatbot.init({
-    chatflowid: '<chatflowid>',
-    apiHost: 'http://localhost:3000',
-  });
-</script>
-```
+### Document After AI Review
+![Reviewed Document](docs/reviewed-document.png)
 
-### FullPage
+### Summary of Changes
+![Summary of Changes](docs/summary-of-changes.png)
 
-```html
-<script type="module">
-  import Chatbot from './web.js';
-  Chatbot.initFull({
-    chatflowid: '<chatflowid>',
-    apiHost: 'http://localhost:3000',
-  });
-</script>
-<flowise-fullchatbot></flowise-fullchatbot>
-```
+---
 
-To enable full screen, add `margin: 0` to <code>body</code> style, and confirm you don't set height and width
+## Technologies Used
 
-```html
-<body style="margin: 0">
-  <script type="module">
-    import Chatbot from './web.js';
-    Chatbot.initFull({
-      chatflowid: '<chatflowid>',
-      apiHost: 'http://localhost:3000',
-      theme: {
-        chatWindow: {
-          // height: 700, don't set height
-          // width: 400, don't set width
-        },
-      },
-    });
-  </script>
-</body>
-```
+- GPT-4o and GPT-4o Mini
+- LangChain
+- Retrieval-Augmented Generation (RAG)
+- Flowise
+- Agents
+- BeautifulSoup
+- WebTools
+- Vector Database
+- Python
 
-## Configuration
+---
 
-You can also customize chatbot with different configuration
+## The Workflow: How It Works
 
-```html
-<script type="module">
-  import Chatbot from 'https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js';
-  Chatbot.init({
-    chatflowid: '91e9c803-5169-4db9-8207-3c0915d71c5f',
-    apiHost: 'http://localhost:3000',
-    chatflowConfig: {
-      // topK: 2
-    },
-    observersConfig: {
-      // (optional) Allows you to execute code in parent based upon signal observations within the chatbot.
-      // The userinput field submitted to bot ("" when reset by bot)
-      observeUserInput: (userInput) => {
-        console.log({ userInput });
-      },
-      // The bot message stack has changed
-      observeMessages: (messages) => {
-        console.log({ messages });
-      },
-      // The bot loading signal changed
-      observeLoading: (loading) => {
-        console.log({ loading });
-      },
-    },
-    theme: {
-      button: {
-        backgroundColor: '#3B81F6',
-        right: 20,
-        bottom: 20,
-        size: 48, // small | medium | large | number
-        dragAndDrop: true,
-        iconColor: 'white',
-        customIconSrc: 'https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/svg/google-messages.svg',
-        autoWindowOpen: {
-          autoOpen: true, //parameter to control automatic window opening
-          openDelay: 2, // Optional parameter for delay time in seconds
-          autoOpenOnMobile: false, //parameter to control automatic window opening in mobile
-        },
-      },
-      tooltip: {
-        showTooltip: true,
-        tooltipMessage: 'Hi There 👋!',
-        tooltipBackgroundColor: 'black',
-        tooltipTextColor: 'white',
-        tooltipFontSize: 16,
-      },
-      chatWindow: {
-        showTitle: true,
-        showAgentMessages: true,
-        title: 'Flowise Bot',
-        titleAvatarSrc: 'https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/svg/google-messages.svg',
-        welcomeMessage: 'Hello! This is custom welcome message',
-        errorMessage: 'This is a custom error message',
-        backgroundColor: '#ffffff',
-        backgroundImage: 'enter image path or link', // If set, this will overlap the background color of the chat window.
-        height: 700,
-        width: 400,
-        fontSize: 16,
-        starterPrompts: ['What is a bot?', 'Who are you?'], // It overrides the starter prompts set by the chat flow passed
-        starterPromptFontSize: 15,
-        clearChatOnReload: false, // If set to true, the chat will be cleared when the page reloads.
-        botMessage: {
-          backgroundColor: '#f7f8ff',
-          textColor: '#303235',
-          showAvatar: true,
-          avatarSrc: 'https://raw.githubusercontent.com/zahidkhawaja/langchain-chat-nextjs/main/public/parroticon.png',
-        },
-        userMessage: {
-          backgroundColor: '#3B81F6',
-          textColor: '#ffffff',
-          showAvatar: true,
-          avatarSrc: 'https://raw.githubusercontent.com/zahidkhawaja/langchain-chat-nextjs/main/public/usericon.png',
-        },
-        textInput: {
-          placeholder: 'Type your question',
-          backgroundColor: '#ffffff',
-          textColor: '#303235',
-          sendButtonColor: '#3B81F6',
-          maxChars: 50,
-          maxCharsWarningMessage: 'You exceeded the characters limit. Please input less than 50 characters.',
-          autoFocus: true, // If not used, autofocus is disabled on mobile and enabled on desktop. true enables it on both, false disables it on both.
-          sendMessageSound: true,
-          // sendSoundLocation: "send_message.mp3", // If this is not used, the default sound effect will be played if sendSoundMessage is true.
-          receiveMessageSound: true,
-          // receiveSoundLocation: "receive_message.mp3", // If this is not used, the default sound effect will be played if receiveSoundMessage is true.
-        },
-        feedback: {
-          color: '#303235',
-        },
-        footer: {
-          textColor: '#303235',
-          text: 'Powered by',
-          company: 'Flowise',
-          companyLink: 'https://flowiseai.com',
-        },
-      },
-    },
-  });
-</script>
-```
+The project revolves around the use of **AI agents** that each handle a specific task in the document review process. The system operates through the following key steps:
 
-## License
+### 1. **Supervisor Agent**
+- **Role**: The **Supervisor Agent** manages the workflow, calling on the specialized worker agents to review different aspects of the document. After the review, it gathers feedback from each agent and applies the suggested changes automatically. Finally, it generates a summary of all the changes made.
+- **Responsibilities**:
+  - Coordinate tasks among the worker agents.
+  - Collect feedback and apply the changes directly.
+  - Generate a summary of changes for the user.
 
-Source code in this repository is made available under the [MIT License](https://github.com/FlowiseAI/Flowise/blob/master/LICENSE.md).
+### 2. **Content Review Agent**
+- **Role**: The **Content Review Agent** focuses on identifying and correcting issues with grammar, punctuation, and language clarity. It ensures that the document is free of spelling errors and adheres to Australian English rules.
+
+### 3. **Structure Review Agent**
+- **Role**: This agent analyzes the document’s structure to ensure it flows logically and is easy to follow. It identifies areas where sections need to be reorganized for clarity and suggests adding headings or subheadings for better readability.
+
+### 4. **Accessibility Review Agent**
+- **Role**: The **Accessibility Review Agent** ensures the document is compliant with accessibility standards, making it usable for people with disabilities. It suggests adding alt text for images and improving contrast in document sections, as well as simplifying complex language for screen readers.
+
+### 5. **Formatting Review Agent**
+- **Role**: This agent ensures that the document’s formatting is consistent and adheres to the **Australian Government Style Manual**. It reviews font styles, sizes, alignment, and paragraph spacing to ensure the document is visually organized.
+
+### 6. **Citation Review Agent**
+- **Role**: The **Citation Review Agent** reviews all references and citations to ensure they are formatted correctly according to the required citation style (e.g., APA format). It verifies that all references are cited consistently throughout the document.
+
+### 7. **Final Edit Agent**
+- **Role**: After all the feedback is gathered, the **Final Edit Agent** automatically applies the changes to the document. It ensures that the changes suggested by the other agents are properly integrated into the final version of the document. A summary is then generated to show the user what changes were made.
+
+---
