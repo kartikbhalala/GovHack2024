@@ -29,14 +29,14 @@ The aim of this project is to provide government organizations with an automated
 
 ## Screenshots
 
-### Original Document
-![Original Document](docs/original-document.png)
+### Users login Screen:
+![Original Document](images/login.jpeg)
 
-### Document After AI Review
-![Reviewed Document](docs/reviewed-document.png)
+### Users Main Screen:
+![Reviewed Document](images/first.png)
 
-### Summary of Changes
-![Summary of Changes](docs/summary-of-changes.png)
+### Document After AI Review:
+![Summary of Changes](images/finaloutput.png)
 
 ---
 
@@ -55,6 +55,9 @@ The aim of this project is to provide government organizations with an automated
 ---
 
 ## The Workflow: How It Works
+
+![flow](images/flow.png)
+
 
 The project revolves around the use of **AI agents** that each handle a specific task in the document review process. The system operates through the following key steps:
 
@@ -83,4 +86,33 @@ The project revolves around the use of **AI agents** that each handle a specific
 ### 7. **Final Edit Agent**
 - **Role**: After all the feedback is gathered, the **Final Edit Agent** automatically applies the changes to the document. It ensures that the changes suggested by the other agents are properly integrated into the final version of the document. A summary is then generated to show the user what changes were made.
 
----
+## Running Instructions
+
+1. **Run the webserver** using `http-server`.
+   
+2. **Run the PocketBase** by executing the following command:  
+   `./pocketbase.exe serve`
+
+3. **PocketBase Schema**:  
+   - The schema is provided as a JSON file (`pb_schema.json`).
+   - Import the schema into PocketBase.
+   - Password and login details are provided in a separate file.
+
+4. **Run Flowise** using:  
+   `npx flowise start`
+
+5. **LLMs Backend Instructions**:  
+   - Detailed instructions for setting up the backend are available in the `LLM backend` folder.
+
+6. **RAG Setup**:  
+   - Five files from the Australian Style Manual are provided.
+   - You will need to upsert these files into the eacg agent.
+
+
+## Note
+
+If you encounter any issues while running the system or have any questions, feel free to contact me at **kartikbhalala3310@gmail.com**.
+
+Thank you :)
+
+
